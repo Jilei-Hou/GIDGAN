@@ -71,7 +71,11 @@ class CGAN(object):
         self.Image_near_weight=tf.abs(blur_2th(self.images_near))
 
         self.Image_near_intensity = mean_filter(self.images_near)
+        self.Image_far_intensity = mean_filter(self.images_far)
         self.Image_fused_intensity = mean_filter(self.fusion_image)
+
+        self.Image_maxgrad = tf.maximum(self.Image_far_grad,self.Image_near_grad)
+        self.Image_maxintensity = tf.maximum(self.Image_far_intensity,self.Image_near_intensity)
         
         self.Image_far_score=tf.sign(self.Image_far_weight-tf.minimum(self.Image_far_weight,self.Image_near_weight))
         self.Image_near_score=1-self.Image_far_score
@@ -95,12 +99,15 @@ class CGAN(object):
         # tf.summary.image('Image_fused_grad_bin',tf.expand_dims(self.Image_fused_grad_bin[1,:,:,:],0))
         tf.summary.image('self.Image_near_intensity', tf.expand_dims(self.Image_near_intensity[1, :, :, :], 0))
         tf.summary.image('self.Image_fused_intensity', tf.expand_dims(self.Image_fused_intensity[1, :, :, :], 0))
+        tf.summary.image('self.Image_maxgrad', tf.expand_dims(self.Image_maxgrad[1, :, :, :], 0))
+        tf.summary.image('self.Image_maxintensity', tf.expand_dims(self.Image_maxintensity[1, :, :, :], 0))
         
 
 
           
     with tf.name_scope('d_loss_grad'):
-        pos_grad=self.discriminator_grad(self.Image_far_grad,reuse=False)
+        #pos_grad=self.discriminator_grad(self.Image_far_grad,reuse=False)
+        pos_grad=self.discriminator_grad(self.Image_maxgrad,reuse=False)
         neg_grad=self.discriminator_grad(self.Image_fused_grad,reuse=True,update_collection='NO_OPS')
         pos_loss_grad=tf.reduce_mean(tf.square(pos_grad-tf.random_uniform(shape=[self.batch_size,1],minval=0.7,maxval=1.2,dtype=tf.float32)))
         neg_loss_grad=tf.reduce_mean(tf.square(neg_grad-tf.random_uniform(shape=[self.batch_size,1],minval=0,maxval=0.3,dtype=tf.float32)))
@@ -112,7 +119,8 @@ class CGAN(object):
         tf.summary.scalar('loss_d_grad',self.d_loss_grad)
 
     with tf.name_scope('d_loss_int'):
-        pos_int=self.discriminator_int(self.Image_near_intensity,reuse=False)
+        #pos_int=self.discriminator_int(self.Image_near_intensity,reuse=False)
+        pos_int=self.discriminator_int(self.Image_maxintensity,reuse=False)
         neg_int=self.discriminator_int(self.Image_fused_intensity,reuse=True,update_collection='NO_OPS')
         pos_loss_int=tf.reduce_mean(tf.square(pos_int-tf.random_uniform(shape=[self.batch_size,1],minval=0.7,maxval=1.2,dtype=tf.float32)))
         neg_loss_int=tf.reduce_mean(tf.square(neg_int-tf.random_uniform(shape=[self.batch_size,1],minval=0,maxval=0.3,dtype=tf.float32)))
