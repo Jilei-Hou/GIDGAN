@@ -1,4 +1,4 @@
-# GIGAN
+# GIDGAN
 We will complete this file soon.
 
 Need to complete:
