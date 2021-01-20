@@ -1,8 +1,8 @@
 # GIDGAN
-We will complete this file soon.
+Code for paper: Unified Gradient- and Intensity-Discriminator Generative Adversarial Network for Image Fusion.
 
-Need to complete:
-  1. update parameters
-  2. share pre training model
-  3. updat README.md
-  4. Share IHS2RGB & YCbCr2RGB code
+This work can be applied for:
+  1. infrared and visible image fusion
+  2. medical image fusion 
+  3. multi-focus image fusion
+  4. multi-exposure image fusion
