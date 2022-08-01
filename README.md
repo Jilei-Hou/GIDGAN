@@ -6,3 +6,6 @@ This work can be applied for:
   2. medical image fusion 
   3. multi-focus image fusion
   4. multi-exposure image fusion
+  
+  
+Later, we will release our model and update some code.
