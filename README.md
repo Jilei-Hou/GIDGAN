@@ -10,6 +10,7 @@ This work can be applied for:
   
 Later, we will release our model and update some code.
 
+If this work is helpful to you, please cite it as:
 ```
 @article{zhou2022unified,
   title={Unified gradient-and intensity-discriminator generative adversarial network for image fusion},
