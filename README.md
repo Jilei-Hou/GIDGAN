@@ -9,3 +9,13 @@ This work can be applied for:
   
   
 Later, we will release our model and update some code.
+
+```
+@article{zhou2022unified,
+  title={Unified gradient-and intensity-discriminator generative adversarial network for image fusion},
+  author={Zhou, Huabing and Hou, Jilei and Zhang, Yanduo and Ma, Jiayi and Ling, Haibin},
+  journal={Information Fusion},
+  year={2022},
+  publisher={Elsevier}
+}
+```
