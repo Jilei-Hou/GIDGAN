@@ -14,7 +14,7 @@ If this work is helpful to you, please cite it as:
 ```
 @article{zhou2022unified,
   title={Unified gradient-and intensity-discriminator generative adversarial network for image fusion},
-  author={Zhou, Huabing and Hou, Jilei and Zhang, Yanduo and Ma, Jiayi and Ling, Haibin},
+  author={Zhou, Huabing and Hou, Jilei* and Zhang, Yanduo and Ma, Jiayi* and Ling, Haibin},
   journal={Information Fusion},
   year={2022},
   publisher={Elsevier}
